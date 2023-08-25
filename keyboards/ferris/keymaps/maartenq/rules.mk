@@ -1,0 +1,6 @@
+# rules.mk
+
+BOOTLOADER = qmk-dfu
+TAP_DANCE_ENABLE = no
+COMBO_ENABLE = yes
+CAPS_WORD_ENABLE = yes
