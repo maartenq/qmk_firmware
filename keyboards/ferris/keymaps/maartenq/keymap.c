@@ -154,12 +154,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_NAV] = LAYOUT(
         KC_EJCT ,KC_MPRV, KC_MPLY, KC_MNXT, KC_MSTP,
         KC_HOME, KC_PGDN, KC_PGUP, KC_END, KC_DEL,
-        XXXXXXX, KC_MS_L, KC_MS_U, KC_MS_D, KC_MS_R,
+        XXXXXXX, MS_LEFT, MS_UP, MS_DOWN, MS_RGHT,
         KC_LEFT, KC_DOWN, KC_UP, KC_RGHT, KC_ENT,
         XXXXXXX, XXXXXXX , KC_COPY, KC_PASTE, XXXXXXX,
-        KC_BTN3, KC_ACL0, KC_ACL1, KC_ACL2, KC_PSCR,
-        _______, KC_BTN1,
-        KC_BTN2, QWERTY
+        MS_BTN3, MS_ACL0, MS_ACL1, MS_ACL2, KC_PSCR,
+        _______, MS_BTN1,
+        MS_BTN2, QWERTY
   ),
 
 };
