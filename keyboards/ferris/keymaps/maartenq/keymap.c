@@ -14,6 +14,41 @@ enum layers {
 #define NAV TO(_NAV)
 #define NUM TO(_NUM)
 
+// i-tec KVM dock hotkeys: dock reads raw HID taps, so mod-tap/one-shot
+// keys on this board (Alt, Shift) can't reliably send them -- macros
+// with SS_TAP send clean isolated keydown/keyup instead.
+enum custom_keycodes {
+    KVM_MRVN = SAFE_RANGE, // Output 1 -> PC1 marvin
+    KVM_BUP,               // Output 1 -> PC2 bup
+    KVM_SLRT,               // Output 1 -> PC3 slarti
+    KVM_DFLT,               // kb/mouse mode -> Default (Output 1 only)
+    KVM_ROAM,               // kb/mouse mode -> Roaming (fallback)
+};
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (!record->event.pressed) {
+        return true;
+    }
+    switch (keycode) {
+        case KVM_MRVN:
+            SEND_STRING(SS_TAP(X_SCRL) SS_DELAY(100) SS_TAP(X_SCRL) SS_DELAY(100) SS_TAP(X_1));
+            return false;
+        case KVM_BUP:
+            SEND_STRING(SS_TAP(X_SCRL) SS_DELAY(100) SS_TAP(X_SCRL) SS_DELAY(100) SS_TAP(X_2));
+            return false;
+        case KVM_SLRT:
+            SEND_STRING(SS_TAP(X_SCRL) SS_DELAY(100) SS_TAP(X_SCRL) SS_DELAY(100) SS_TAP(X_3));
+            return false;
+        case KVM_DFLT:
+            SEND_STRING(SS_TAP(X_LSFT) SS_DELAY(100) SS_TAP(X_LSFT) SS_DELAY(100) SS_TAP(X_1));
+            return false;
+        case KVM_ROAM:
+            SEND_STRING(SS_TAP(X_LSFT) SS_DELAY(100) SS_TAP(X_LSFT) SS_DELAY(100) SS_TAP(X_2));
+            return false;
+    }
+    return true;
+}
+
 
 enum combos {
   Q_P,
@@ -144,7 +179,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   |      |  ←M  |  M↑  |   M↓ |  M→  |                |  ←   |  ↓   |   ↑  |   →  |  ↵   |
   |------+------+------+------+------|                |------+------+------+------+------|
   |      |      |      |      |      |                |      |      |      |      |      |
-  |      |      |      |      |      |                | MCLK | acl0 | acl1 | acl2 | PrSc |
+  | MRVN |  BUP | SLRT | DFLT | ROAM |                | MCLK | acl0 | acl1 | acl2 | PrSc |
   `-------------+------+------+------+------.  ,------+------+------+------+------+------'
                               |      |      |  |      |      |
                               | SYM  | LCLK |  | RCLK | QWRT |
@@ -156,7 +191,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_HOME, KC_PGDN, KC_PGUP, KC_END, KC_DEL,
         XXXXXXX, MS_LEFT, MS_UP, MS_DOWN, MS_RGHT,
         KC_LEFT, KC_DOWN, KC_UP, KC_RGHT, KC_ENT,
-        XXXXXXX, XXXXXXX , KC_COPY, KC_PASTE, XXXXXXX,
+        KVM_MRVN, KVM_BUP, KVM_SLRT, KVM_DFLT, KVM_ROAM,
         MS_BTN3, MS_ACL0, MS_ACL1, MS_ACL2, KC_PSCR,
         _______, MS_BTN1,
         MS_BTN2, QWERTY
