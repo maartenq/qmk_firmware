@@ -34,7 +34,7 @@ qmk flash -kb ferris/sweep -km maartenq
 
   No `EE_HANDS`: the USB half is always left, so plug USB into the left
   half. Back into BOOTSEL: double-tap the reset pads (QMK_PM2040
-  default, untested), or unplug, hold BOOT, replug. Details: guide
+  default, confirmed), or unplug, hold BOOT, replug. Details: guide
   `03-Resources/qmk-ferris-sweep.md`.
 - Don't mix Elite-C and Elite-Pi halves: split protocols differ.
 - Flashing needs the physical keyboard and user action. Compile to
