@@ -145,7 +145,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   ,----------------------------------.                ,----------------------------------.
   |      |      |      |      |      |                |      |      |      |      |      |
-  |  F11 |  F7  |  F8  |  F9  |  F12 |                |   .  |   7  |   8  |   9  |      |
+  |  F11 |  F7  |  F8  |  F9  |  F12 |                |   .  |   7  |   8  |   9  | BOOT |
   |------+------+------+------+------|                |------+------+------+------+------|
   |      |      |      |      |      |                |      |      |      |      |      |
   |  F10 |  F4  |  F5  |  F6  |      |                |   0  |   4  |   5  |   6  |      |
@@ -160,7 +160,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_NUM] = LAYOUT(
         KC_F11, KC_F7, KC_F8, KC_F9, KC_F12,
-        KC_KP_DOT, KC_7, KC_8, KC_9, XXXXXXX,
+        KC_KP_DOT, KC_7, KC_8, KC_9, QK_BOOT,
         KC_F10, KC_F4, KC_F5, KC_F6, XXXXXXX,
         KC_0, KC_4, KC_5, KC_6, XXXXXXX,
         XXXXXXX, KC_F1, KC_F2, MT(MOD_LALT, KC_F3), OSM(MOD_LGUI),
